@@ -1,0 +1,26 @@
+.container {
+    height: 100vh;
+}
+
+.text-decoration {
+    color: blue;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    mat-card {
+        width: 80% !important;
+    }
+
+}
+
+@media (max-width: 425px) {
+    mat-card {
+        width: 100% !important;
+    }
+
+    .content-buttons {
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+}

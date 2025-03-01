@@ -1,1 +1,40 @@
-<p>auth works!</p>
+<div class="container d-flex justify-content-center align-items-center">
+    <mat-card appearance="outlined" class="w-50">
+        <mat-card-header class="d-flex justify-content-center">
+            <mat-card-title>Iniciar sesión</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="mt-4">
+            <form [formGroup]="formAuth" class="row">
+                <mat-form-field class="col-12" appearance="outline">
+                    <mat-label>Correo electrónico</mat-label>
+                    <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com">
+                    @if (email.hasError('email') && !email.hasError('required')) {
+                    <mat-error>Por favor ingresa un correo electrónico valido</mat-error>
+                    }
+                    @if (email.hasError('required')) {
+                    <mat-error>Este campo es <strong>requerido</strong></mat-error>
+                    }
+                </mat-form-field>
+                <mat-form-field class="col-12" appearance="outline">
+                    <mat-label>Contraseña</mat-label>
+                    <input [type]="showPassword() ? 'text' : 'password'" matInput formControlName="password">
+
+                    <mat-icon matSuffix (click)="togglePasswordVisibility()">{{ showPassword() ? 'visibility' :
+                        'visibility_off' }}</mat-icon>
+
+                    @if (password.hasError('pattern') && !email.hasError('required')) {
+                    <mat-error>Tu contraseña no cumple con los requisitos de seguridad: mínimo 8 caracteres, al menos
+                        una mayúscula, una minúscula, un número y un carácter especial.'</mat-error>
+                    }
+                    @if (password.hasError('required')) {
+                    <mat-error>Este campo es <strong>requerido</strong></mat-error>
+                    }
+                </mat-form-field>
+                <div class="content-buttons d-flex justify-content-around">
+                    <button mat-flat-button>Iniciar sesión</button>
+                    <p class="text-decoration" (click)="redirectRecoverPassword()">¿Olvidaste tu contraseña?</p>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>
