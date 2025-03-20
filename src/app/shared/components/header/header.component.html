@@ -4,16 +4,12 @@
             <mat-icon>menu</mat-icon>
         </button> -->
         <span class="example-spacer"></span>
-
-        <button mat-button class="menu-item" (click)="selectMenuItem('workArea')"
-            [class.active]="selectedMenuItem === 'workArea'">
-            Gestión de Áreas
+        @for (option of filteredMenuOptions; track $index) {
+        <button mat-button class="menu-item" (click)="selectMenuItem(option.route)"
+            [class.active]="selectedMenuItem === option.route">
+            {{option.label}}
         </button>
-
-        <button mat-button class="menu-item" (click)="selectMenuItem('dashboard')"
-            [class.active]="selectedMenuItem === 'dashboard'">
-            about
-        </button>
+        }
 
     </mat-toolbar>
 </section>
