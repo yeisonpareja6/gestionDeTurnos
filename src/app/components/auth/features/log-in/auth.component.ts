@@ -53,7 +53,7 @@ export class AuthComponent implements OnInit {
       this.auth.login(this.formAuth.value).subscribe({
         next: (res) => {
           localStorage.setItem('token', res.token);
-          this.router.navigate(['workArea']);
+          this.router.navigate(['WorkArea']);
         }
       });
   }
