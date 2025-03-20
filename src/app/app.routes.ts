@@ -15,7 +15,7 @@ export const routes: Routes = [
         loadChildren: () => import('./components/dashboard/dashboard.routes').then(d => d.dashboardRoute)
     },
     {
-        path: 'workArea',
+        path: 'WorkArea',
         loadChildren: () => import('./components/work-area/work-area.routes').then(w => w.routesWorkAreas)
     },
     {
