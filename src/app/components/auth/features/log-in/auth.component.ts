@@ -5,6 +5,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { AuthSharedService } from '../../../../shared/services/auth-shared.service';
 @Component({
   selector: 'app-auth',
   standalone: true,
@@ -15,15 +17,25 @@ import { Router, RouterModule } from '@angular/router';
 export class AuthComponent implements OnInit {
 
   formAuth!: FormGroup;
+
   fb = inject(FormBuilder);
   router = inject(Router);
+  auth = inject(AuthService);
+  authShared = inject(AuthSharedService);
 
   showPassword = signal(false);
 
   ngOnInit(): void {
+    this.authShared.removeToken();
+    this.setFormAuth();
+  }
+
+  setFormAuth() {
     this.formAuth = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#+$%^&*()_])[A-Za-z\d@#+$%^&*()_]{8,}$/)]]
+      userName: ['', Validators.required],
+      password: ['', [Validators.required]]
+      // userName: ['', [Validators.required, Validators.email]],
+      // password: ['', [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#+$%^&*()_])[A-Za-z\d@#+$%^&*()_]{8,}$/)]]
     });
   }
 
@@ -35,6 +47,17 @@ export class AuthComponent implements OnInit {
     this.router.navigate(['auth/recover-password']);
   }
 
-  get email(): AbstractControl { return this.formAuth.get('email')! }
+  login() {
+    this.formAuth.markAllAsTouched();
+    if (this.formAuth.valid)
+      this.auth.login(this.formAuth.value).subscribe({
+        next: (res) => {
+          localStorage.setItem('token', res.token);
+          this.router.navigate(['workArea']);
+        }
+      });
+  }
+
+  get userName(): AbstractControl { return this.formAuth.get('userName')! }
   get password(): AbstractControl { return this.formAuth.get('password')! }
 }
