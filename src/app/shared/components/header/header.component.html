@@ -1,0 +1,19 @@
+<section class="container">
+    <mat-toolbar>
+        <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+            <mat-icon>menu</mat-icon>
+        </button> -->
+        <span class="example-spacer"></span>
+
+        <button mat-button class="menu-item" (click)="selectMenuItem('workArea')"
+            [class.active]="selectedMenuItem === 'workArea'">
+            Gestión de Áreas
+        </button>
+
+        <button mat-button class="menu-item" (click)="selectMenuItem('dashboard')"
+            [class.active]="selectedMenuItem === 'dashboard'">
+            about
+        </button>
+
+    </mat-toolbar>
+</section>

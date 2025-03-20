@@ -1,0 +1,14 @@
+.menu-item {
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: color 0.3s;
+}
+
+.menu-item.active {
+    color: #EAA543;
+}
+
+.menu-item:hover {
+    color: #EAA543;
+    cursor: pointer;
+}
