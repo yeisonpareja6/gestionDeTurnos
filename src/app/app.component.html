@@ -1,1 +1,6 @@
-<router-outlet />
+<ng-container>
+    @if(isLogin()){
+    <app-header></app-header>
+    }
+    <router-outlet />
+</ng-container>
