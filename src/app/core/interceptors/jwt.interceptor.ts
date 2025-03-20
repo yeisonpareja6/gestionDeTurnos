@@ -3,7 +3,7 @@ import { catchError, throwError } from 'rxjs';
 
 export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
   // const messageService = inject(MessageService);
-  const token = JSON.parse(localStorage.getItem('token')!);
+  const token = localStorage.getItem('token');
   if (token) {
     req = req.clone({
       setHeaders: {
