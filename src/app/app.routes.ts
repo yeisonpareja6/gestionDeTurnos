@@ -15,10 +15,6 @@ export const routes: Routes = [
         loadChildren: () => import('./components/dashboard/dashboard.routes').then(d => d.dashboardRoute)
     },
     {
-        path: 'workManagement',
-        loadChildren: () => import('./components/work-management/workManagement.routes').then(w => w.workManagementRoutes)
-    },
-    {
         path: 'workArea',
         loadChildren: () => import('./components/work-area/work-area.routes').then(w => w.routesWorkAreas)
     },
