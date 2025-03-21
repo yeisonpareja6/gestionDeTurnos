@@ -19,9 +19,9 @@ export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
     router.navigate(['auth']);
   }
   return next(req).pipe(
-    catchError((error) => {
+    catchError(() => {
       return throwError(() => {
-        messageService.showToastError('Error', error.err.message ?? 'Ha ocurrido un error, inténtalo mas tarde');
+        messageService.showToastError('Error', 'Ha ocurrido un error, inténtalo mas tarde');
       });
     })
   )
