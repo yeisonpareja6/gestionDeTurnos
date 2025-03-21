@@ -11,12 +11,12 @@ export const routes: Routes = [
         loadChildren: () => import('./components/auth/auth.routes').then(a => a.authRoutes)
     },
     {
-        path: 'dashboard',
-        loadChildren: () => import('./components/dashboard/dashboard.routes').then(d => d.dashboardRoute)
-    },
-    {
         path: 'WorkArea',
         loadChildren: () => import('./components/work-area/work-area.routes').then(w => w.routesWorkAreas)
+    },
+    {
+        path: 'Workstation',
+        loadChildren: () => import('./components/work-station/work-station.routes').then(w => w.routesWorkStation)
     },
     {
         path: '**',
