@@ -1,8 +1,5 @@
 <section class="container">
     <mat-toolbar>
-        <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-            <mat-icon>menu</mat-icon>
-        </button> -->
         <span class="example-spacer"></span>
         @for (option of filteredMenuOptions; track $index) {
         <button mat-button class="menu-item" (click)="selectMenuItem(option.route)"
@@ -10,6 +7,5 @@
             {{option.label}}
         </button>
         }
-
     </mat-toolbar>
 </section>
