@@ -13,6 +13,9 @@
                     <mat-option [value]="area.id">{{area.name}}</mat-option>
                     }
                 </mat-select>
+                @if(formWorkstation.get('workAreaId')?.hasError('required')) {
+                <mat-error>Este campo es requerido</mat-error>
+                }
             </mat-form-field>
             <mat-form-field class="w-100">
                 <mat-label>Puesto de trabajo</mat-label>
