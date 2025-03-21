@@ -1,0 +1,33 @@
+<mat-dialog-content>
+    <div>
+        <h2 class="title">
+            {{title}}
+        </h2>
+    </div>
+    <div>
+        <form [formGroup]="formWorkstation" (submit)="data.id ? updateWorkstation() : saveWorkstation()">
+            <mat-form-field class="w-100">
+                <mat-label>Seleccione un área</mat-label>
+                <mat-select formControlName="workAreaId">
+                    @for (area of listAreas(); track $index) {
+                    <mat-option [value]="area.id">{{area.name}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="w-100">
+                <mat-label>Puesto de trabajo</mat-label>
+                <input formControlName="name" matInput>
+                @if(formWorkstation.get('name')?.hasError('required')) {
+                <mat-error>Este campo es requerido</mat-error>
+                }
+            </mat-form-field>
+        </form>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button class="button-secondary buttons button-cancel" mat-dialog-close>Cancelar</button>
+    <button mat-button type="submit" class="button-primary buttons"
+        (click)="data.id ? updateWorkstation() : saveWorkstation()"><mat-icon>save</mat-icon>
+        Guardar
+    </button>
+</mat-dialog-actions>

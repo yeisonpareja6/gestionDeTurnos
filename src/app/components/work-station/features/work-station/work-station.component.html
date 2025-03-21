@@ -1,0 +1,40 @@
+<div class="container">
+    <h2 class="title mt-3">Puesto de trabajo</h2>
+    <section>
+        <div class="d-flex justify-content-end">
+            <button mat-button (click)="openDialog(null)" class="button-primary"><mat-icon>add</mat-icon> Crear</button>
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Puesto de trabajo</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (workStation of listWorkStation() | paginate: { itemsPerPage: 10, currentPage: page, }; track $index)
+                    {
+                    <tr>
+                        <th>{{$index+1}}</th>
+                        <th>{{workStation.name}}</th>
+                        <th>{{workStation.isActive ? 'Activo':'Inactivo' }}</th>
+                        <td>
+                            <button mat-mini-fab class="button-edit" (click)="openDialog(workStation.id)">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <button mat-mini-fab (click)="deleteWorkstation(workStation)">
+                                <mat-icon color="danger">delete</mat-icon>
+                            </button>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+            <pagination-controls (pageChange)="page = $event" previousLabel="Anterior"
+                nextLabel="Siguiente"></pagination-controls>
+        </div>
+    </section>
+</div>
