@@ -46,10 +46,10 @@ body {
   background-color: white !important;
   border: 1px solid #EAA543 !important;
   transition: background-color 0.3s, color 0.3s !important;
+  border-radius: 8px
 }
 
-.button-primary:hover,
-.button-primary:focus {
+.button-primary:hover {
   background-color: #333333 !important;
   border-color: #333333 !important;
   color: white !important;
@@ -60,6 +60,7 @@ body {
   background-color: white !important;
   border: 1px solid #666666 !important;
   transition: color 0.3s, border-color 0.3s !important;
+  border-radius: 8px
 }
 
 .button-secondary:hover,
@@ -72,4 +73,12 @@ body {
 .title {
   font-weight: 500;
   color: #EAA543;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+.mat-mdc-mini-fab {
+  background-color: #EAA543 !important;
 }
