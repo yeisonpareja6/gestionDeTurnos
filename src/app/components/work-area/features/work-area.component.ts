@@ -31,8 +31,6 @@ export class WorkAreaComponent implements OnInit {
     this.workAreaService.getWorkArea().subscribe({
       next: (res) => {
         this.listAreas.set(res);
-        console.log(this.listAreas);
-
       }
     });
   }
