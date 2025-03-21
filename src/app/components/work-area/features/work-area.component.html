@@ -2,32 +2,38 @@
     <h2 class="title mt-3">Áreas de trabajo</h2>
     <section>
         <div class="d-flex justify-content-end">
-            <button mat-button class="button-primary"><mat-icon>add</mat-icon> Crear</button>
+            <button mat-button (click)="openDialog(null)" class="button-primary"><mat-icon>add</mat-icon> Crear</button>
         </div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Área</th>
-                    <th>Last</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th>1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>
-                        <!-- <button class="button-primary"> -->
-                        <mat-icon class="color-button-edit">edit</mat-icon>
-                        <!-- </button> -->
-                        <!-- <button class="button-primary"> -->
-                        <mat-icon class="color-button-delete">delete</mat-icon>
-                        <!-- </button> -->
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Área</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (area of listAreas() | paginate: { itemsPerPage: 10, currentPage: page,  }; track $index) {
+                    <tr>
+                        <th>{{$index+1}}</th>
+                        <th>{{area.name}}</th>
+                        <th>{{area.isActive ? 'Activo':'Inactivo' }}</th>
+                        <td>
+                            <button mat-mini-fab class="button-edit" (click)="openDialog(area.id)">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <button mat-mini-fab (click)="deleteWorkArea(area)">
+                                <mat-icon color="danger">delete</mat-icon>
+                            </button>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+            <pagination-controls (pageChange)="page = $event" previousLabel="Anterior"
+            nextLabel="Siguiente"></pagination-controls>
+        </div>
     </section>
 </div>

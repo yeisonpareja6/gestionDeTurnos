@@ -1,0 +1,30 @@
+<mat-dialog-content>
+    <div>
+        <h2 class="title">
+            {{title}}
+        </h2>
+    </div>
+    <div>
+        <form [formGroup]="formWorkArea" (submit)="data.id ? updateWorkArea() : saveWorkArea()">
+            <mat-form-field class="w-100">
+                <mat-label>Área</mat-label>
+                <input formControlName="name" matInput>
+                @if(formWorkArea.get('name')?.hasError('required')) {
+                <mat-error>Este campo es requerido</mat-error>
+                }
+            </mat-form-field>
+            @if(data.id) {
+            <section class="w-100">
+                <mat-checkbox formControlName="isActive">{{isActive?.value ? 'Inactivar': 'Activar'}}</mat-checkbox>
+            </section>
+            }
+        </form>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button class="button-secondary buttons button-cancel" mat-dialog-close>Cancelar</button>
+    <button mat-button type="submit" class="button-primary buttons"
+        (click)="data.id ? updateWorkArea() : saveWorkArea()"><mat-icon>save</mat-icon>
+        Guardar
+    </button>
+</mat-dialog-actions>
