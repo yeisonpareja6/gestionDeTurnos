@@ -26,9 +26,9 @@ export class HeaderComponent implements OnInit {
   filteredMenuOptions: MenuOption[] = [];
   menuOptions: MenuOption[] = [
     { label: 'Áreas de trabajo', permission: 'WorkArea', route: '/WorkArea' },
+    { label: 'Puesto de trabajo', permission: 'Workstation', route: '/Workstation' },
     { label: 'Usuarios', permission: 'User', route: '/User' },
     { label: 'Gestión de trabajo usuario', permission: 'UserWorkstation', route: '/UserWorkstation' },
-    { label: 'Puesto de trabajo', permission: 'Workstation', route: '/Workstation' },
     { label: 'Horario de trabajo', permission: 'WorkSchedule', route: '/WorkSchedule' },
   ];
 
