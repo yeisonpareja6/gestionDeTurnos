@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MessagesService } from '../../../../shared/services/messages.service';
 
 
 
@@ -23,6 +24,8 @@ export class FormWorkAreaComponent implements OnInit {
   readonly data = inject(MAT_DIALOG_DATA);
   workAreaService = inject(WorkAreaService);
   fb = inject(FormBuilder);
+  messageService = inject(MessagesService);
+
   title: string = 'Crear';
 
   formWorkArea!: FormGroup;
@@ -53,6 +56,7 @@ export class FormWorkAreaComponent implements OnInit {
     if (this.formWorkArea.valid)
       this.workAreaService.saveWorkArea(this.formWorkArea.value).subscribe({
         next: () => {
+          this.messageService.showToastSuccess('Exitoso', 'Se ha guardado con éxito.');
           this.close(true);
         }
       });
@@ -63,6 +67,7 @@ export class FormWorkAreaComponent implements OnInit {
     if (this.formWorkArea.valid)
       this.workAreaService.updateWorkArea(this.formWorkArea.value).subscribe({
         next: () => {
+          this.messageService.showToastSuccess('Exitoso', 'Se ha actualizado con éxito.');
           this.close(true);
         }
       });
